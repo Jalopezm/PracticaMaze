@@ -9,6 +9,8 @@ public class Room {
     private boolean target = false;
     private Map<Maze.Directions, MapSite> sides = new HashMap<>();
 
+    public Room (){}
+
     public Room(int roomNumber) {
         this.number = roomNumber;
     }
