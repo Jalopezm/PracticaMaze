@@ -1,14 +1,11 @@
 package com.esliceu.practicaMaze.model;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.esliceu.practicaMaze.services.RoomService;
 
-public class Room {
+public class Room extends RoomService {
     private int number;
     private Item item;
     private boolean target = false;
-    private Map<Maze.Directions, MapSite> sides = new HashMap<>();
-
     public Room (){}
 
     public Room(int roomNumber) {

@@ -1,22 +1,12 @@
 package com.esliceu.practicaMaze.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.esliceu.practicaMaze.services.KeyService;
 
-public class Key {
-    private List<Door> openableDoors = new ArrayList<>();
+public class Key extends KeyService implements Item{
     private String name;
 
     public Key(String name){
         this.name = name;
-    }
-
-    public void addDoor(Door door){
-        this.openableDoors.add(door);
-    }
-
-    public void openDoor(Door door){
-        //Abrir Puerta
     }
 
 }

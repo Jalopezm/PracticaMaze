@@ -1,4 +1,6 @@
 package com.esliceu.practicaMaze.model;
 
-public class Coin {
+import com.esliceu.practicaMaze.services.CoinService;
+
+public class Coin extends CoinService implements Item{
 }
