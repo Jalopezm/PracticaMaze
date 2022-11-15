@@ -6,41 +6,41 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RoomService {
-    private Item item;
+    private static Item item;
     private boolean target = false;
 
-    private Map<Maze.Directions, MapSite> sides = new HashMap<>();
+    private static Map<Maze.Directions, MapSite> sides = new HashMap<>();
 
     public static Room createRoom(int roomId) {
-        Room room = new Room();
+        Room room = new Room(roomId);
         return room;
     }
 
-    public MapSite getSides(Maze.Directions dir) {
-        return this.sides.get(dir);
+    public static MapSite getSides(Maze.Directions dir) {
+        return sides.get(dir);
     }
 
     public boolean isTarget() {
         return target;
     }
 
-    public void setTarget(boolean target) {
-        this.target = target;
+    public static void setTarget(boolean target) {
+        target = target;
     }
 
-    public void setSides(Maze.Directions dir, MapSite ms) {
-        this.sides.put(dir, ms);
+    public static void setSides(Maze.Directions dir, MapSite ms) {
+        sides.put(dir, ms);
     }
 
-    public void setItem(Item it) {
-        this.item = it;
+    public static void setItem(Item it) {
+        item = it;
     }
 
-    public void enter(Player player) {
-        if (this.item != null) {
-            System.out.println("Has obtingut un ítem: " + this.item.toString());
-            player.addItem(this.item);
-            this.item = null;
+    public static void enter(Player player) {
+        if (item != null) {
+            System.out.println("Has obtingut un ítem: " + item.toString());
+            player.addItem(item);
+            item = null;
         }
     }
 }

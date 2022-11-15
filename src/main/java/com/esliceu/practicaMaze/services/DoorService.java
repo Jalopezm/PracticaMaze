@@ -4,34 +4,26 @@ import com.esliceu.practicaMaze.model.*;
 
 import java.util.List;
 
-public class DoorService implements MapSite {
-    private Room room1 = new Door().getRoom1();
-    private Room room2 = new Door().getRoom2();
-    private boolean open = false;
-    public void open() {
-        this.open = true;
-    }
-    public boolean isOpen(){
-        return this.open;
-    }
+public class DoorService {
+    static Door door = new Door();
+    private static Room room1 = door.getRoom1();
+    private static Room room2 = door.getRoom2();
 
-    @Override
-    public void enter(Player player) {
-        if (!this.open){
+    public static void enter(Player player) {
+        if (!door.isOpen()){
             List<Item> items = player.getItemList();
             items.stream()
                     .filter(i -> i instanceof Key)
                     .map(i -> (Key) i)
-                    .forEach(k -> k.open((Door) this));
+                    .forEach(k -> k.open(door));
         }
-        if (this.open){
+        if (door.isOpen()){
             Room room = getNextToRoom(player.getCurrRoom());
         }else{
             //NO  se puede abrir la puerta
         }
     }
-
-    public Room getNextToRoom(Room currRoom){
+    public static Room getNextToRoom(Room currRoom){
         if (room1.getNumber() == currRoom.getNumber()){
             return room2;
         }

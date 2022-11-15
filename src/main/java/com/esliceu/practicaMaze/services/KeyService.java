@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class KeyService {
-    private List<Door> openableDoors = new ArrayList<>();
+    private static List<Door> openableDoors = new ArrayList<>();
 
-    public void addDoor(Door d) {
-        this.openableDoors.add(d);
+    public static void addDoor(Door d) {
+        openableDoors.add(d);
     }
 
-    public void open(Door door) {
-        this.openableDoors
+    public static void open(Door door) {
+        openableDoors
                 .stream()
                 .filter(d -> d.equals(door))
                 .forEach(Door::open);

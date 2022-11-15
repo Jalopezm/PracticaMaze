@@ -1,5 +1,9 @@
 package com.esliceu.practicaMaze.controllers;
 
+import com.esliceu.practicaMaze.model.Maze;
+import com.esliceu.practicaMaze.services.MazeService;
+import com.esliceu.practicaMaze.services.RoomService;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +16,8 @@ import java.io.IOException;
 public class NavController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String myjson = MazeService.getJsonInfo();
+        req.setAttribute("myjson", myjson);
         RequestDispatcher dispatcher =
                 req.getRequestDispatcher("/WEB-INF/jsp/nav.jsp");
         dispatcher.forward(req, resp);

@@ -5,7 +5,7 @@ import com.esliceu.practicaMaze.services.PlayerService;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player extends PlayerService {
+public class Player  {
     private Room currRoom;
     private List<Item> invent = new ArrayList<>();
 
