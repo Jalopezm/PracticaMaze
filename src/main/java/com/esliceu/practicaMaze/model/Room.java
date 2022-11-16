@@ -2,12 +2,16 @@ package com.esliceu.practicaMaze.model;
 
 import com.esliceu.practicaMaze.services.RoomService;
 
-public class Room  {
+import java.util.HashMap;
+import java.util.Map;
+
+public class Room implements MapSite{
 
     private int number;
-    private Item item;
-    private boolean target = false;
-    public Room (){}
+    private  Item item;
+    private  boolean target = false;
+
+    private Map<Maze.Directions, MapSite> sides = new HashMap<>();
 
     public Room(int roomNumber) {
         this.number = roomNumber;
@@ -17,22 +21,41 @@ public class Room  {
         return number;
     }
 
-    public MapSite getSides(Maze.Directions dir) {
-       return RoomService.getSides(dir);
+    public static Room createRoom(int roomId) {
+        Room room = new Room(roomId);
+        room.setNumber(roomId);
+        return room;
     }
+
+    public MapSite getSides(Maze.Directions dir) {
+        return this.sides.get(dir);
+    }
+
+    public boolean isTarget() {
+        return target;
+    }
+
     public void setTarget(boolean target) {
-        RoomService.setTarget(target);
+        this.target = target;
     }
 
     public void setSides(Maze.Directions dir, MapSite ms) {
-        RoomService.setSides(dir,ms);
+        this.sides.put(dir, ms);
     }
 
     public void setItem(Item it) {
-        RoomService.setItem(it);
+        this.item = it;
+    }
+    @Override
+    public void enter(Player player) {
+        if (this.item != null) {
+            System.out.println("Has obtingut un ítem: " + this.item.toString());
+            player.addItem(item);
+            this.item = null;
+        }
     }
 
-    public void enter(Player player) {
-        RoomService.enter(player);
+    public void setNumber(int number) {
+        this.number = number;
     }
 }

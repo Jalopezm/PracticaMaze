@@ -2,17 +2,27 @@ package com.esliceu.practicaMaze.model;
 
 import com.esliceu.practicaMaze.services.KeyService;
 
-public class Key implements Item{
-    private String name;
+import java.util.ArrayList;
+import java.util.List;
 
-    public Key(String name){
+public class Key implements Item {
+    private String name;
+    private List<Door> openableDoors = new ArrayList<>();
+
+    public Key(String name) {
         this.name = name;
     }
-    public void open(Door door) {
-        KeyService.open(door);
-    }
+
     public void addDoor(Door d) {
-        KeyService.addDoor(d);
+        openableDoors.add(d);
     }
+
+    public void open(Door door) {
+        openableDoors
+                .stream()
+                .filter(d -> d.equals(door))
+                .forEach(Door::open);
+    }
+
 
 }

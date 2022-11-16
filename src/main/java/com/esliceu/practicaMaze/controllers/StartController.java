@@ -28,7 +28,8 @@ public class StartController extends HttpServlet {
         int mapId = Integer.parseInt(req.getParameter("map"));
         Player player = new Player();
         session.setAttribute("player", player);
-        gameUtil.createMaze(mapId);
+        session.setAttribute("mapID",mapId);
+        gameUtil.createMaze(mapId,player);
         resp.sendRedirect("/nav");
 
     }

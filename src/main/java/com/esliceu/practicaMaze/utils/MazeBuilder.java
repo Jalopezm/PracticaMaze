@@ -5,13 +5,13 @@ import com.esliceu.practicaMaze.services.RoomService;
 
 public class MazeBuilder {
     private Maze maze = new Maze();
-    public Room createRoom(int roomNumber){
+    public void createRoom(int roomNumber){
         Room room = RoomService.createRoom(roomNumber);
         room.setSides(Maze.Directions.North,new Wall());
         room.setSides(Maze.Directions.South,new Wall());
         room.setSides(Maze.Directions.East,new Wall());
         room.setSides(Maze.Directions.West,new Wall());
-        return room;
+        maze.addRoom(roomNumber,room);
     }
     public void setTarget(int nroom) {
         this.maze.getRoom(nroom).setTarget(true);
@@ -24,8 +24,8 @@ public class MazeBuilder {
     private Door buildDoorInternal(int roomFrom, int roomTo, Maze.Directions dir) {
         Room r1 = maze.getRoom(roomFrom);
         Room r2 = maze.getRoom(roomTo);
-        Door door = new Door(r1,r2);
-        r1.setSides(dir,door);
+        Door door = new Door(r1, r2);
+        r1.setSides(dir, door);
         r2.setSides(getOppositeSide(dir), door);
         return door;
     }

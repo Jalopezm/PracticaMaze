@@ -10,12 +10,11 @@ public class Maze {
     Map<Integer, Room> rooms = new HashMap<>();
 
     public void addRoom(int numRoom, Room room) {
-        rooms.put(numRoom, room);
+        this.rooms.put(numRoom, room);
     }
 
     public Room getRoom(int numRoom) {
-        System.out.println("Room"+rooms);
-        return rooms.get(numRoom);
+        return this.rooms.get(numRoom);
     }
 
 }
