@@ -42,10 +42,13 @@ public class MazeBuilder {
         Door d = buildDoorInternal(roomFrom, roomTo, dir);
         key.addDoor(d);
     }
-    public void putKeyInRoom(int nroom, Key key) {
-        maze.getRoom(nroom).setItem(key);
-    }
     public Maze getMaze() {
         return this.maze;
+    }
+    public void go(Player player, Maze.Directions dir) {
+        Room room = player.getCurrRoom();
+        MapSite ms = room.getSides(dir);
+        System.out.println("ROOM: "+room.getNumber());
+        ms.enter(player);
     }
 }

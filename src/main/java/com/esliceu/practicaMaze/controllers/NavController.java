@@ -1,9 +1,8 @@
 package com.esliceu.practicaMaze.controllers;
 
-import com.esliceu.practicaMaze.model.Maze;
 import com.esliceu.practicaMaze.model.Player;
 import com.esliceu.practicaMaze.model.Room;
-import com.esliceu.practicaMaze.services.MazeService;
+import com.esliceu.practicaMaze.services.GameService;
 import com.esliceu.practicaMaze.services.RoomService;
 
 import javax.servlet.RequestDispatcher;
@@ -22,8 +21,14 @@ public class NavController extends HttpServlet {
         HttpSession session = req.getSession();
         Player player = (Player) session.getAttribute("player");
         Room room = player.getCurrRoom();
-        String myjson = MazeService.getJsonInfo(room,player);
+
+        String myjson = GameService.getJsonInfo(room, player);
         req.setAttribute("myjson", myjson);
+
+        String move = req.getParameter("move");
+        RoomService roomService = new RoomService();
+        roomService.movePlayer(move,player);
+
         RequestDispatcher dispatcher =
                 req.getRequestDispatcher("/WEB-INF/jsp/nav.jsp");
         dispatcher.forward(req, resp);

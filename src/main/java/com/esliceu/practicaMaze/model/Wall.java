@@ -9,7 +9,8 @@ public class Wall implements MapSite{
     }
 
     @Override
-    public void enter(Player player) {
-        //No se puede pasar
+    public String enter(Player player) {
+        System.out.println("Muro");
+        return "Te has chocado con un Muro";
     }
 }

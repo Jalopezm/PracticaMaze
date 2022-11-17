@@ -1,9 +1,6 @@
 package com.esliceu.practicaMaze.utils;
 
-import com.esliceu.practicaMaze.model.Key;
-import com.esliceu.practicaMaze.model.Maze;
-import com.esliceu.practicaMaze.model.Player;
-import com.esliceu.practicaMaze.model.Room;
+import com.esliceu.practicaMaze.model.*;
 
 public class GameUtil {
     public void createMaze(int mazeId, Player player){
@@ -16,6 +13,7 @@ public class GameUtil {
                 }
 
                 Key key1 = new Key("1");
+                Coin coin = new Coin();
                 mazeBuilder.buildDoor(2,1,Maze.Directions.West,key1);
                 mazeBuilder.buildHallWay(2,3,Maze.Directions.East);
 
@@ -23,7 +21,7 @@ public class GameUtil {
                 mazeBuilder.buildHallWay(3,4,Maze.Directions.South);
 
                 Key key2 = new Key("2");
-                mazeBuilder.buildDoor(4,5,Maze.Directions.East,key2);
+                mazeBuilder.buildDoor(5,4,Maze.Directions.West,key2);
                 mazeBuilder.buildHallWay(5,6,Maze.Directions.North);
 
                 Key key3 = new Key("3");
@@ -31,11 +29,19 @@ public class GameUtil {
                 mazeBuilder.setTarget(7);
 
                 Room room1 = maze.getRoom(1);
-                room1.setItem(key1);
+                room1.setItem("Key",key1);
                 Room room2 = maze.getRoom(2);
-                room2.setItem(key2);
+                room2.setItem("Key",key2);
+                Room room3 = maze.getRoom(3);
+                room3.setItem("Coin",coin);
+                Room room4 = maze.getRoom(4);
+                room4.setItem("Coin",coin);
                 Room room5 = maze.getRoom(5);
-                room5.setItem(key3);
+                room5.setItem("Key",key3);
+                room5.setItem("Coin",coin);
+                Room room6 = maze.getRoom(6);
+                room6.setItem("Coin",coin);
+
                 player.setCurrentRoom(room2);
                 break;
             case 2:
@@ -52,5 +58,11 @@ public class GameUtil {
                 player.setCurrentRoom(room);
                 break;
         }
+    }
+    public void go(Player player, Maze.Directions dir) {
+        Room room = player.getCurrRoom();
+        MapSite ms = room.getSides(dir);
+        System.out.println("ROOM: "+room.getNumber());
+        ms.enter(player);
     }
 }

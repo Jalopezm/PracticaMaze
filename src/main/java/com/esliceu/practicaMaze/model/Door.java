@@ -21,7 +21,7 @@ public class Door implements MapSite {
     }
 
     @Override
-    public void enter(Player player) {
+    public String enter(Player player) {
         if (!this.open) {
             List<Item> items = player.getItemList();
             items.stream()
@@ -29,13 +29,15 @@ public class Door implements MapSite {
                     .map(i -> (Key) i)
                     .forEach(k -> k.open(this));
         }
-
         if (this.open) {
             Room r = getOtherRoom(player.getCurrRoom());
             player.setCurrentRoom(r);
+            System.out.println("Pasillo");
         } else {
-            System.out.println("No pots obrir la porta, encara");
+            System.out.println("Puerta");
+            return "No Puedes Abrir la Puerta";
         }
+        return null;
     }
 
     private Room getOtherRoom(Room currentRoom) {

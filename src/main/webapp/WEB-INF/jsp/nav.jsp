@@ -3,18 +3,16 @@
 <html>
 
 <head>
-
+<style>
+        <%@include file="/css/styles.css" %>
+    </style>
 </head>
 
 <body>
-<canvas style="border:1px solid #000000;" width="848px" height="480px" ></canvas>
+<canvas id="canvas" style="border:1px solid #000000;" width="880px" height="495px" onload="draw()"></canvas>
 </body>
-<script type="application/json">
+<script type="application/json" id="myjson">
 ${myjson}
 </script>
-<script>
-let dataScript = document.getElementById("myjson").textContent;
-let data = JSON.parse(dataScript);
-
-</script>
+<script src="js/javaScript.js"></script>
 </html>
