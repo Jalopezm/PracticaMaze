@@ -114,6 +114,3 @@ canvas.addEventListener('click', event => {
         window.location.assign("/nav?item=Key");
     }
 });
-function recharge(){
-window.location.href = "nav.jsp";
-}
