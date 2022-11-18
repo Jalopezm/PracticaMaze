@@ -7,10 +7,12 @@ import java.util.List;
 
 public class Key implements Item {
     private String name;
+    private int value;
     private List<Door> openableDoors = new ArrayList<>();
 
-    public Key(String name) {
+    public Key(String name,int value) {
         this.name = name;
+        this.value = value;
     }
 
     public void addDoor(Door d) {
@@ -22,6 +24,14 @@ public class Key implements Item {
                 .stream()
                 .filter(d -> d.equals(door))
                 .forEach(Door::open);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getValue() {
+        return value;
     }
 
     @Override

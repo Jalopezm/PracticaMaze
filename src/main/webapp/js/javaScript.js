@@ -3,85 +3,22 @@ let ctx = canvas.getContext('2d');
 let dataScript = document.getElementById("myjson").textContent;
 let data = JSON.parse(dataScript);
 
-let bkGround = new Image();
-bkGround.src = 'img/backGround.jpeg';
-bkGround.onload = () => {
-    ctx.drawImage(bkGround, 0, 0);
-};
-let coin = new Image();
-coin.src = 'img/coin.png';
-coin.onload = () => {
-    if (data.items.Coin != "[null]") {
-        ctx.drawImage(coin, 688, 303, 60, 60);
-    }
-};
+const srcs = ["img/backGround.jpeg", "img/coin.png", "img/key.png", "img/wallH.png", "img/wallV.png",
+    "img/doorH.png", "img/doorV.png", "img/hallWayH.png", "img/hallWayV.png"];
+const images = srcs.map((src) => {
+    const image = new Image();
+    image.src = src;
+    return image;
+});
+const imagesLoaded = () => images.every((image) => image.complete);
+images.forEach((image) => {
+    image.onload = () => {
+        if (imagesLoaded()) {
+            draw(images);
+        }
+    };
+});
 
-let key = new Image();
-key.src = 'img/key.png';
-key.onload = () => {
-    if (data.items.Key != "[null]") {
-        ctx.drawImage(key, 523, 304, 60, 60);
-    }
-};
-let wallH = new Image();
-wallH.src = 'img/wallH.png';
-let wallV = new Image();
-wallV.src = 'img/wallV.png';
-let doorH = new Image();
-doorH.src = 'img/doorH.png';
-let doorV = new Image();
-doorV.src = 'img/doorV.png';
-let hallWayH = new Image();
-hallWayH.src = 'img/hallWayH.png';
-let hallWayV = new Image();
-hallWayV.src = 'img/hallWayV.png';
-
-function draw() {
-    switch (data.Walls.N) {
-        case "Wall":
-            ctx.drawImage(wallH, 605, 103, 64, 12);
-            break;
-        case "HallWay":
-        ctx.drawImage(hallWayH, 605, 103, 64, 12);
-            break;
-        case "Door":
-            ctx.drawImage(doorH, 605, 103, 64, 12);
-            break;
-    }
-    switch (data.Walls.S) {
-        case "Wall":
-            ctx.drawImage(wallH, 607, 382, 64, 12);
-            break;
-        case "HallWay":
-                ctx.drawImage(hallWayH, 607, 382, 64, 12);
-            break;
-        case "Door":
-            ctx.drawImage(doorH, 607, 382, 64, 12);
-            break;
-    }
-    switch (data.Walls.E) {
-        case "Wall":
-            ctx.drawImage(wallV, 767, 222, 16, 58);
-            break;
-        case "HallWay":
-        ctx.drawImage(hallWayV, 767, 222, 16, 58);
-            break;
-        case "Door":
-            ctx.drawImage(doorV, 767, 222, 16, 58);
-            break;
-    }
-    switch (data.Walls.W) {
-        case "Wall":
-            ctx.drawImage(wallV, 493, 221, 16, 58);
-            break;
-        case "HallWay":
-                ctx.drawImage(hallWayV, 493, 221, 16, 58);
-            break;
-        case "Door":
-            ctx.drawImage(doorV, 493, 221, 16, 58);
-            break;
-    }
-};
 
 canvas.addEventListener('click', event => {
     let rect = canvas.getBoundingClientRect();
@@ -107,10 +44,63 @@ canvas.addEventListener('click', event => {
     }
     if (x >= 688 && y >= 303 && x <= 742 && y <= 356) {
         console.log("Coin")
-        window.location.assign("/nav?item=Coin");
+        window.location.assign("/getCoin");
     }
     if (x >= 525 && y >= 305 && x <= 580 && y <= 360) {
         console.log("Key")
-        window.location.assign("/nav?item=Key");
+        window.location.assign("/getKey");
     }
 });
+function draw(images) {
+    ctx.drawImage(images[0], 0, 0);
+    if (data.items.Coin != "[null]") {
+        ctx.drawImage(images[1], 688, 303, 60, 60);
+    }
+    if (data.items.Key != "[null]") {
+        ctx.drawImage(images[2], 523, 304, 60, 60);
+    }
+    switch (data.Walls.N) {
+        case "Wall":
+            ctx.drawImage(images[3], 605, 103, 64, 12);
+            break;
+        case "HallWay":
+            ctx.drawImage(images[7], 605, 103, 64, 12);
+            break;
+        case "Door":
+            ctx.drawImage(images[5], 605, 103, 64, 12);
+            break;
+    }
+    switch (data.Walls.S) {
+        case "Wall":
+            ctx.drawImage(images[3], 607, 382, 64, 12);
+            break;
+        case "HallWay":
+            ctx.drawImage(images[7], 607, 382, 64, 12);
+            break;
+        case "Door":
+            ctx.drawImage(images[5], 607, 382, 64, 12);
+            break;
+    }
+    switch (data.Walls.E) {
+        case "Wall":
+            ctx.drawImage(images[4], 767, 222, 16, 58);
+            break;
+        case "HallWay":
+            ctx.drawImage(images[8], 767, 222, 16, 58);
+            break;
+        case "Door":
+            ctx.drawImage(images[6], 767, 222, 16, 58);
+            break;
+    }
+    switch (data.Walls.W) {
+        case "Wall":
+            ctx.drawImage(images[4], 493, 221, 16, 58);
+            break;
+        case "HallWay":
+            ctx.drawImage(images[8], 493, 221, 16, 58);
+            break;
+        case "Door":
+            ctx.drawImage(images[6], 493, 221, 16, 58);
+            break;
+    }
+};

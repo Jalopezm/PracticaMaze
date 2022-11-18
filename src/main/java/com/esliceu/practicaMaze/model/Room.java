@@ -50,8 +50,8 @@ public class Room implements MapSite{
         }
     }
 
-    public String getItem(int i) {
-        return Arrays.toString(new Item[]{item[i]});
+    public Item getItem(int i) {
+        return this.item[i];
     }
 
     @Override
@@ -66,4 +66,23 @@ public class Room implements MapSite{
         this.number = number;
     }
 
+    public void deleteItem(int i) {
+        this.item[i] = null;
+    }
+
+    public boolean haveCoin() {
+        if (this.item[1] != null){
+            System.out.println("yes");
+            return true;
+        }
+    return false;
+    }
+
+    public boolean haveKey() {
+        if (this.item[0] != null){
+            System.out.println("yes");
+            return true;
+        }
+        return false;
+    }
 }
