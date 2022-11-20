@@ -28,7 +28,6 @@ public class getCoinController extends HttpServlet {
         if (haveCoin) {
             Item coin = room.getItem(1);
                 coinService.getCoin(coin, player, room);
-                room.deleteItem(1);
                 resp.sendRedirect("/nav");
         }else{
             resp.sendRedirect("/nav");

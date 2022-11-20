@@ -7,6 +7,7 @@ import com.esliceu.practicaMaze.services.RoomService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +29,9 @@ public class NavController extends HttpServlet {
 
         String myjson = GameService.getJsonInfo(room, player);
         req.setAttribute("myjson", myjson);
+        if(room.isTarget()){
+            System.out.println("WINNER");
+        }
 
         RequestDispatcher dispatcher =
                 req.getRequestDispatcher("/WEB-INF/jsp/nav.jsp");

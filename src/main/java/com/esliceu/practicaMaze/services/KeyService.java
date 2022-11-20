@@ -21,7 +21,7 @@ public class KeyService {
         System.out.println(key.getValue());
         if (totalCoin >= key.getValue()){
             player.addItem(key);
-            room.deleteItem(1);
+            room.deleteItem(0);
         }else{
             System.out.println("NO TIENES DINERO CABRON");
         }
