@@ -26,21 +26,33 @@ canvas.addEventListener('click', event => {
     let y = Math.round(event.clientY - rect.top);
     console.log("Coordinate x: " + x,
         "Coordinate y: " + y);
+    if (x >= 609 && y >= 108 && x <= 669 && y <= 120) {
+        window.location.assign("/open?dir=North");
+    }
+    if (x >= 608 & y >= 381 && x <= 666 && y <= 394) {
+        window.location.assign("/open?dir=South");
+    }
+    if (x >= 493 && y >= 223 && x <= 510 && y <= 276) {
+        window.location.assign("/open?dir=West");
+    }
+    if (x >= 767 && y >= 223 && x <= 784 && y <= 279) {
+        window.location.assign("/open?dir=East");
+    }
     if (x >= 552 && y >= 11 && x <= 717 && y <= 57) {
         console.log("N")
-        window.location.assign("/nav?move=North");
+        window.location.assign("/nav?dir=North");
     }
     if (x >= 552 & y >= 441 && x <= 718 && y <= 488) {
         console.log("S")
-        window.location.assign("/nav?move=South");
+        window.location.assign("/nav?dir=South");
     }
     if (x >= 827 && y >= 167 && x <= 874 && y <= 332) {
         console.log("E")
-        window.location.assign("/nav?move=East");
+        window.location.assign("/nav?dir=East");
     }
     if (x >= 388 && y >= 167 && x <= 442 && y <= 331) {
         console.log("W")
-        window.location.assign("/nav?move=West");
+        window.location.assign("/nav?dir=West");
     }
     if (x >= 688 && y >= 303 && x <= 742 && y <= 356) {
         console.log("Coin")

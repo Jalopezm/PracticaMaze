@@ -10,9 +10,13 @@ public class Key implements Item {
     private int value;
     private List<Door> openableDoors = new ArrayList<>();
 
-    public Key(String name,int value) {
+    public Key(String name) {
         this.name = name;
-        this.value = value;
+
+    }
+
+    public void setValue(int keyValue) {
+        value = keyValue;
     }
 
     public void addDoor(Door d) {

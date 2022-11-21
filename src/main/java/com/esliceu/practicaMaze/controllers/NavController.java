@@ -17,25 +17,30 @@ import java.io.IOException;
 
 @WebServlet("/nav")
 public class NavController extends HttpServlet {
+    Player player;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        Player player = (Player) session.getAttribute("player");
+        try {
+            HttpSession session = req.getSession();
+            player = (Player) session.getAttribute("player");
 
-        String move = req.getParameter("move");
-        RoomService roomService = new RoomService();
-        roomService.movePlayer(move,player);
-        Room room = player.getCurrRoom();
+            String dir = req.getParameter("dir");
+            RoomService roomService = new RoomService();
+            roomService.movePlayer(dir, player);
+            Room room = player.getCurrRoom();
 
-        String myjson = GameService.getJsonInfo(room, player);
-        req.setAttribute("myjson", myjson);
-        if(room.isTarget()){
-            System.out.println("WINNER");
+            String myjson = GameService.getJsonInfo(room, player);
+            req.setAttribute("myjson", myjson);
+            if (room.isTarget()) {
+                System.out.println("WINNER");
+            }
+            RequestDispatcher dispatcher =
+                    req.getRequestDispatcher("/WEB-INF/jsp/nav.jsp");
+            dispatcher.forward(req, resp);
+        } catch (Exception e) {
+            resp.sendRedirect("/start");
         }
-
-        RequestDispatcher dispatcher =
-                req.getRequestDispatcher("/WEB-INF/jsp/nav.jsp");
-        dispatcher.forward(req, resp);
     }
 
     @Override

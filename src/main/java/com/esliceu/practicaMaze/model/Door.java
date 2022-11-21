@@ -16,12 +16,7 @@ public class Door implements MapSite {
         this.open = true;
     }
 
-    public boolean isOpen() {
-        return this.open;
-    }
-
-    @Override
-    public String enter(Player player) {
+    public void openDoor(Player player) {
         if (!this.open) {
             List<Item> items = player.getItemList();
             items.stream()
@@ -29,6 +24,13 @@ public class Door implements MapSite {
                     .map(i -> (Key) i)
                     .forEach(k -> k.open(this));
         }
+    }
+    public boolean isOpen() {
+        return this.open;
+    }
+
+    @Override
+    public String enter(Player player) {
         if (this.open) {
             Room r = getOtherRoom(player.getCurrRoom());
             player.setCurrentRoom(r);
