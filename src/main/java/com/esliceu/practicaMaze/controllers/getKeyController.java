@@ -27,7 +27,9 @@ public class getKeyController extends HttpServlet {
 
         if (haveKey) {
             Key key = (Key) room.getItem(0);
-            keyService.getKey(key, player, room);
+            for (int i = 0; i < key.getValue(); i++) {
+                keyService.getKey(key,player,room);
+            }
             resp.sendRedirect("/nav");
         }else{
             resp.sendRedirect("/nav");
