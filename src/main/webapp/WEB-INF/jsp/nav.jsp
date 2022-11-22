@@ -10,6 +10,7 @@
 
 <body>
 <canvas id="canvas" style="border:1px solid #000000;" width="1134px" height="486px"></canvas>
+<button id="reset" onclick="reset()">RESET</button>
 </body>
 <script type="application/json" id="myjson">
 ${myjson}
