@@ -3,8 +3,8 @@ let ctx = canvas.getContext('2d');
 let dataScript = document.getElementById("myjson").textContent;
 let data = JSON.parse(dataScript);
 
-const srcs = ["img/backGround.jpeg", "img/coin.png", "img/key.png", "img/wallH.png", "img/wallV.png",
-    "img/doorH.png", "img/doorV.png", "img/hallWayH.png", "img/hallWayV.png"];
+const srcs = ["img/backGround.png", "img/coin.png", "img/key.png", "img/wallH.png", "img/wallV.png",
+    "img/doorH.png", "img/doorV.png"];
 const images = srcs.map((src) => {
     const image = new Image();
     image.src = src;
@@ -26,39 +26,39 @@ canvas.addEventListener('click', event => {
     let y = Math.round(event.clientY - rect.top);
     console.log("Coordinate x: " + x,
         "Coordinate y: " + y);
-    if (x >= 609 && y >= 108 && x <= 669 && y <= 120) {
+    if (x >= 785 && y >= 100 && x <= 915 && y <= 116) {
         window.location.assign("/open?dir=North");
     }
-    if (x >= 608 & y >= 381 && x <= 666 && y <= 394) {
+    if (x >= 785 & y >= 371 && x <= 915 && y <= 387) {
         window.location.assign("/open?dir=South");
     }
-    if (x >= 493 && y >= 223 && x <= 510 && y <= 276) {
+    if (x >= 640 && y >= 190 && x <= 652 && y <= 319) {
         window.location.assign("/open?dir=West");
     }
-    if (x >= 767 && y >= 223 && x <= 784 && y <= 279) {
+    if (x >= 1018 && y >= 190 && x <= 1033 && y <= 319) {
         window.location.assign("/open?dir=East");
     }
-    if (x >= 552 && y >= 11 && x <= 717 && y <= 57) {
+    if (x >= 702 && y >= 9 && x <= 974 && y <= 56) {
         console.log("N")
         window.location.assign("/nav?dir=North");
     }
-    if (x >= 552 & y >= 441 && x <= 718 && y <= 488) {
+    if (x >= 702 & y >= 431 && x <= 974 && y <= 477) {
         console.log("S")
         window.location.assign("/nav?dir=South");
     }
-    if (x >= 827 && y >= 167 && x <= 874 && y <= 332) {
+    if (x >= 1079 && y >= 167 && x <= 1126 && y <= 380) {
         console.log("E")
         window.location.assign("/nav?dir=East");
     }
-    if (x >= 388 && y >= 167 && x <= 442 && y <= 331) {
+    if (x >= 536 && y >= 105 && x <= 596 && y <= 380) {
         console.log("W")
         window.location.assign("/nav?dir=West");
     }
-    if (x >= 688 && y >= 303 && x <= 742 && y <= 356) {
+    if (x >= 945 && y >= 298 && x <= 1000 && y <= 351) {
         console.log("Coin")
         window.location.assign("/getCoin");
     }
-    if (x >= 525 && y >= 305 && x <= 580 && y <= 360) {
+    if (x >= 670 && y >= 299 && x <= 730 && y <= 351) {
         console.log("Key")
         window.location.assign("/getKey");
     }
@@ -66,53 +66,49 @@ canvas.addEventListener('click', event => {
 function draw(images) {
     ctx.drawImage(images[0], 0, 0);
     if (data.items.Coin != "[null]") {
-        ctx.drawImage(images[1], 688, 303, 60, 60);
+        ctx.drawImage(images[1], 945, 298, 60, 60);
     }
     if (data.items.Key != "[null]") {
-        ctx.drawImage(images[2], 523, 304, 60, 60);
+        ctx.drawImage(images[2], 670, 299, 60, 60);
     }
     switch (data.Walls.N) {
         case "Wall":
-            ctx.drawImage(images[3], 605, 103, 64, 12);
+            ctx.drawImage(images[3], 770, 87, 164, 40);
             break;
         case "HallWay":
-            ctx.drawImage(images[7], 605, 103, 64, 12);
             break;
         case "Door":
-            ctx.drawImage(images[5], 605, 103, 64, 12);
+            ctx.drawImage(images[5], 770, 87, 164, 40);
             break;
     }
     switch (data.Walls.S) {
         case "Wall":
-            ctx.drawImage(images[3], 607, 382, 64, 12);
+            ctx.drawImage(images[3], 770, 360, 164, 40);
             break;
         case "HallWay":
-            ctx.drawImage(images[7], 607, 382, 64, 12);
             break;
         case "Door":
-            ctx.drawImage(images[5], 607, 382, 64, 12);
+            ctx.drawImage(images[5], 770, 360, 164, 40);
             break;
     }
     switch (data.Walls.E) {
         case "Wall":
-            ctx.drawImage(images[4], 767, 222, 16, 58);
+            ctx.drawImage(images[4], 1010, 170, 40, 164);
             break;
         case "HallWay":
-            ctx.drawImage(images[8], 767, 222, 16, 58);
             break;
         case "Door":
-            ctx.drawImage(images[6], 767, 222, 16, 58);
+            ctx.drawImage(images[6], 1010, 170, 40, 164);
             break;
     }
     switch (data.Walls.W) {
         case "Wall":
-            ctx.drawImage(images[4], 493, 221, 16, 58);
+            ctx.drawImage(images[4], 627, 180, 40, 164);
             break;
         case "HallWay":
-            ctx.drawImage(images[8], 493, 221, 16, 58);
             break;
         case "Door":
-            ctx.drawImage(images[6], 493, 221, 16, 58);
+            ctx.drawImage(images[6], 627, 180, 40, 164);
             break;
     }
 };

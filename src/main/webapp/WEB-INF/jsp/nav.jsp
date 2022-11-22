@@ -9,7 +9,7 @@
 </head>
 
 <body>
-<canvas id="canvas" style="border:1px solid #000000;" width="880px" height="495px"></canvas>
+<canvas id="canvas" style="border:1px solid #000000;" width="1134px" height="486px"></canvas>
 </body>
 <script type="application/json" id="myjson">
 ${myjson}

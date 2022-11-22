@@ -13,17 +13,17 @@ public class KeyService {
             String item = inv.get(i).toString();
             System.out.println(item);
             if (item.equals("Coin")){
-                inv.remove(i);
                 totalCoin++;
+            }
+            if (totalCoin >= key.getValue()){
+                player.addItem(key);
+                room.deleteItem(0);
+                break;
+            }else{
+                inv.remove(i);
             }
         }
         System.out.println(totalCoin);
         System.out.println(key.getValue());
-        if (totalCoin >= key.getValue()){
-            player.addItem(key);
-            room.deleteItem(0);
-        }else{
-            System.out.println("NO TIENES DINERO CABRON");
-        }
     }
 }
