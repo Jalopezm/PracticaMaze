@@ -10,23 +10,25 @@ public class RoomService {
         return room;
     }
 
-    public void movePlayer(String move, Player player) {
+    public String movePlayer(String move, Player player) {
         GameUtil gameUtil = new GameUtil();
+        String message = "";
         if (move != null) {
             switch (Maze.Directions.valueOf(move)) {
                 case North:
-                    gameUtil.go(player, Maze.Directions.North);
+                    message = gameUtil.go(player, Maze.Directions.North);
                     break;
                 case South:
-                    gameUtil.go(player, Maze.Directions.South);
+                    message = gameUtil.go(player, Maze.Directions.South);
                     break;
                 case East:
-                    gameUtil.go(player, Maze.Directions.East);
+                    message = gameUtil.go(player, Maze.Directions.East);
                     break;
                 case West:
-                    gameUtil.go(player, Maze.Directions.West);
+                    message = gameUtil.go(player, Maze.Directions.West);
                     break;
             }
         }
+        return message;
     }
 }

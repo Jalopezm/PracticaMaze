@@ -30,10 +30,6 @@ public class Key implements Item {
                 .forEach(Door::open);
     }
 
-    public String getName() {
-        return name;
-    }
-
     public int getValue() {
         return value;
     }

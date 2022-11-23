@@ -1,7 +1,9 @@
 package com.esliceu.practicaMaze.controllers;
 
 import com.esliceu.practicaMaze.model.*;
+import com.esliceu.practicaMaze.services.GameService;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,10 +23,18 @@ public class openController extends HttpServlet {
         String dir = req.getParameter("dir");
         Room room = player.getCurrRoom();
         MapSite ms = room.getSides(Maze.Directions.valueOf(dir));
-
+String message = "";
         if (ms instanceof Door) {
             ((Door) ms).openDoor(player);
+            if (((Door) ms).isOpen()){
+                message = "YOU'VE OPENED THE DOOR";
+            }else {
+                message = "YOU DON'T HAVE THE KEY";
+            }
+            String myjson = GameService.getJsonInfo(room, player, message);
+            req.setAttribute("myjson", myjson);
         }
-        resp.sendRedirect("/nav");
-    }
+        RequestDispatcher dispatcher =
+                req.getRequestDispatcher("/WEB-INF/jsp/nav.jsp");
+        dispatcher.forward(req, resp);    }
 }

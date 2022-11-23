@@ -4,9 +4,11 @@ import com.esliceu.practicaMaze.model.Item;
 import com.esliceu.practicaMaze.model.Key;
 import com.esliceu.practicaMaze.model.Player;
 import com.esliceu.practicaMaze.model.Room;
+import com.esliceu.practicaMaze.services.GameService;
 import com.esliceu.practicaMaze.services.KeyService;
 import com.esliceu.practicaMaze.services.RoomService;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,12 +29,23 @@ public class getKeyController extends HttpServlet {
 
         if (haveKey) {
             Key key = (Key) room.getItem(0);
-            for (int i = 0; i < key.getValue(); i++) {
-                keyService.getKey(key,player,room);
+            if (player.playerTotalCoins(player) >= key.getValue()) {
+                for (int i = 0; i < key.getValue(); i++) {
+                  String message = keyService.getKey(key, player, room);
+                    String myjson = GameService.getJsonInfo(room, player, message);
+
+                    req.setAttribute("myjson", myjson);
+                }
+
+            }else{
+                String message = "NOT ENOUGH COINS";
+                String myjson = GameService.getJsonInfo(room, player, message);
+
+                req.setAttribute("myjson", myjson);
             }
-            resp.sendRedirect("/nav");
-        }else{
-            resp.sendRedirect("/nav");
+            RequestDispatcher dispatcher =
+                    req.getRequestDispatcher("/WEB-INF/jsp/nav.jsp");
+            dispatcher.forward(req, resp);
         }
     }
 }

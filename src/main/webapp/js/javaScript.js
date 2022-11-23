@@ -68,6 +68,7 @@ canvas.addEventListener('click', event => {
     if (x >= 670 && y >= 299 && x <= 730 && y <= 351) {
         console.log("Key")
         window.location.assign("/getKey");
+
     }
 });
 
@@ -80,6 +81,17 @@ function draw(images) {
     if (data.items.Key != "[null]") {
         ctx.drawImage(images[2], 670, 299, 60, 60);
     }
+    if(data.Walls.message != null){
+    ctx.font = "25px arial";
+    ctx.fillStyle = "#fff";
+    ctx.fillText(data.Walls.message,9,326);
+    }
+    ctx.font = "25px arial";
+    ctx.fillStyle = "#fff";
+    ctx.fillText("ROOM: "+data.Walls.ID,130,35);
+    ctx.fillText("COINS: "+ data.items.totalCoin,9,86);
+    ctx.fillText("KEYS: "+ data.items.totalKeys,9,120);
+
     switch (data.Walls.N) {
         case "Wall":
             ctx.drawImage(images[3], 770, 87, 164, 40);
@@ -239,6 +251,7 @@ function moveW(timestamp) {
         }
     }
 }
+let numeroIdle = 0;
 function idle(timestamp) {
     if (idleStart === undefined) {
         idleStart = timestamp;
@@ -248,12 +261,12 @@ function idle(timestamp) {
     if (previousTimeStamp !== timestamp) {
         const count = Math.floor(0.12 * elapsed);
         draw(images);
-        ctx.drawImage(pj, 0 * 39, numero * 62, 39, 62,
+        ctx.drawImage(pj, numeroIdle * 39, 0 * 62, 39, 62,
             810, 200, 39 * 1.2, 62 * 1.2);
         if (count % 25 == 0) {
-            numero += 1;
-            if (numero > 3) {
-                numero = 0;
+            numeroIdle += 2;
+            if (numeroIdle > 2) {
+                numeroIdle = 0;
             }
         }
     }

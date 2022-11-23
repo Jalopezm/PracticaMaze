@@ -48,12 +48,6 @@ public class Door implements MapSite {
         }
         return r1;
     }
-    public Room getNextToRoom(Room currRoom){
-        if (r1.getNumber() == currRoom.getNumber()){
-            return r2;
-        }
-        return r1;
-    }
 
     @Override
     public String toString() {

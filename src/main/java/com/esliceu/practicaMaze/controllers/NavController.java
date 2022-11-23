@@ -27,13 +27,15 @@ public class NavController extends HttpServlet {
 
             String dir = req.getParameter("dir");
             RoomService roomService = new RoomService();
-            roomService.movePlayer(dir, player);
+            String message = roomService.movePlayer(dir, player);
             Room room = player.getCurrRoom();
 
-            String myjson = GameService.getJsonInfo(room, player);
+
+            String myjson = GameService.getJsonInfo(room, player, message);
+
             req.setAttribute("myjson", myjson);
             if (room.isTarget()) {
-                System.out.println("WINNER");
+                message = "WINNER";
             }
             RequestDispatcher dispatcher =
                     req.getRequestDispatcher("/WEB-INF/jsp/nav.jsp");

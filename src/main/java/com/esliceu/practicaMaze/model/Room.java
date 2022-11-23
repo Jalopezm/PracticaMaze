@@ -56,10 +56,11 @@ public class Room implements MapSite{
 
     @Override
     public String enter(Player player) {
+        String message = "";
         if (this.item != null) {
-            System.out.println("Hay un Item en la Sala:" + this.item.toString());
+            message = "Hay un Item en la Sala:";
         }
-        return null;
+        return message;
     }
 
     public void setNumber(int number) {
