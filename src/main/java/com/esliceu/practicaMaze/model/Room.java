@@ -58,7 +58,7 @@ public class Room implements MapSite{
     public String enter(Player player) {
         String message = "";
         if (this.item != null) {
-            message = "Hay un Item en la Sala:";
+            message = "THERE IS A ITEM ON THE ROOM";
         }
         return message;
     }

@@ -35,7 +35,7 @@ public class NavController extends HttpServlet {
 
             req.setAttribute("myjson", myjson);
             if (room.isTarget()) {
-                message = "WINNER";
+                message = " WINNER!!";
 
                 myjson = GameService.getJsonInfo(room, player, message);
 

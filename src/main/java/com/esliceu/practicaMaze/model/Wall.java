@@ -11,6 +11,6 @@ public class Wall implements MapSite{
     @Override
     public String enter(Player player) {
         System.out.println("Muro");
-        return "Te has chocado con un Muro";
+        return "YOU CAN'T CROSS A WALL";
     }
 }

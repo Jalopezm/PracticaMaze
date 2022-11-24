@@ -29,6 +29,11 @@ canvas.addEventListener('click', event => {
     let y = Math.round(event.clientY - rect.top);
     console.log("Coordinate x: " + x,
         "Coordinate y: " + y);
+        if(data.Walls.message == " WINNER!!"){
+            if(x >= 0 && y >= 0 && x <= 1134 && y <= 486){
+                window.location.assign("/endform")
+            }
+        }
     if (x >= 785 && y >= 100 && x <= 915 && y <= 116) {
         window.location.assign("/open?dir=North");
     }

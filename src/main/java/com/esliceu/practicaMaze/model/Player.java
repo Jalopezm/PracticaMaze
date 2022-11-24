@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player  {
+    private long startTime;
     private Room currRoom;
     private List<Item> invent = new ArrayList<>();
 
@@ -32,6 +33,13 @@ public class Player  {
             }
         }
         return counter;
+    }
+    public long getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(long startTime) {
+        this.startTime = startTime;
     }
 
     public Object playerTotalKeys(Player player) {

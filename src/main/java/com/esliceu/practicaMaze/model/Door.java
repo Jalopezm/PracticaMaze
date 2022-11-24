@@ -37,7 +37,7 @@ public class Door implements MapSite {
             System.out.println("Pasillo");
         } else {
             System.out.println("Puerta");
-            return "No Puedes Abrir la Puerta";
+            return "YOU CAN'T OPEN THE DOOR";
         }
         return null;
     }
