@@ -36,6 +36,10 @@ public class NavController extends HttpServlet {
             req.setAttribute("myjson", myjson);
             if (room.isTarget()) {
                 message = "WINNER";
+
+                myjson = GameService.getJsonInfo(room, player, message);
+
+                req.setAttribute("myjson", myjson);
             }
             RequestDispatcher dispatcher =
                     req.getRequestDispatcher("/WEB-INF/jsp/nav.jsp");
