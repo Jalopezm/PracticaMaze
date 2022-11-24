@@ -31,6 +31,7 @@ public class GameService {
             itemRoom.put("Key", "[null]");
         }
         itemRoom.put("totalKeys",player.playerTotalKeys(player));
+
         jsonObject.put("items", itemRoom);
         JSONObject playerInv = new JSONObject();
         playerInv.put("Inv",player.getItemList().toString());

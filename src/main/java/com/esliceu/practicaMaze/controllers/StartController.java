@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Date;
 
 @WebServlet("/start")
 public class StartController extends HttpServlet {
@@ -27,6 +28,9 @@ public class StartController extends HttpServlet {
         GameUtil gameUtil = new GameUtil();
         int mapId = Integer.parseInt(req.getParameter("map"));
         Player player = new Player();
+        Date date = new Date();
+        Long timeStart = date.getTime();
+        session.setAttribute("timeStart",timeStart);
         session.setAttribute("player", player);
         session.setAttribute("mapID",mapId);
         gameUtil.createMaze(mapId,player);

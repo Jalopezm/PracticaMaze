@@ -14,11 +14,11 @@ public class WinnersMysql implements WinnersDAOMysql {
 
         try {
             Connection con = getConnection();
-            String query = "insert into winners (NAME, MAZE NAME, TIME) values (?,?,?)";
+            String query = "Insert into winners (NAME,MazeName,TIME) values (?,?,?)";
             PreparedStatement preparedStatement = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, winner.getWinnerName());
             preparedStatement.setString(2, winner.getMazeSolved());
-            preparedStatement.setInt(3, (int) winner.getTime());
+            preparedStatement.setInt(3, winner.getTime());
             preparedStatement.execute();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next()) {
@@ -38,7 +38,7 @@ public class WinnersMysql implements WinnersDAOMysql {
             List<Winner> allWinners = new ArrayList<>();
             Connection con = getConnection();
             Statement st = con.createStatement();
-            ResultSet resultSet = st.executeQuery("select * from winners");
+            ResultSet resultSet = st.executeQuery("SELECT * FROM `winners` ORDER BY TIME");
             while (resultSet.next()) {
                 int id = resultSet.getInt(1);
                 String playerName = resultSet.getString(2);
@@ -47,7 +47,7 @@ public class WinnersMysql implements WinnersDAOMysql {
                 Winner winner = new Winner();
                 winner.setWinnerId(id);
                 winner.setWinnerName(playerName);
-                winner.setMazeSolved(mazeName);
+                winner.setMazeName(mazeName);
                 winner.setTime(time);
                 allWinners.add(winner);
             }

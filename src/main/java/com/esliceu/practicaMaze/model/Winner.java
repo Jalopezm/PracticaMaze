@@ -7,15 +7,15 @@ public class Winner {
     long time;
 
     public String getWinnerName() {
-        return name;
+        return this.name;
     }
 
     public String getMazeSolved() {
-        return mazeName;
+        return this.mazeName;
     }
 
-    public Object getTime() {
-        return time;
+    public int getTime() {
+        return (int) this.time;
     }
 
     public void setWinnerId(int id) {
@@ -26,11 +26,11 @@ public class Winner {
         this.name = playerName;
     }
 
-    public void setMazeSolved(String mazeName) {
+    public void setMazeName(String mazeName) {
         this.mazeName = mazeName;
     }
 
-    public void setTime(Long time) {
+    public void setTime(long time) {
         this.time = time;
     }
 }
