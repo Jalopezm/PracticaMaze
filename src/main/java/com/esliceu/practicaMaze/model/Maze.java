@@ -7,6 +7,7 @@ public class Maze {
     public enum Directions {
         North, South, East, West
     }
+
     Map<Integer, Room> rooms = new HashMap<>();
 
     public void addRoom(int numRoom, Room room) {

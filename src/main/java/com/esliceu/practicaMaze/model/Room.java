@@ -4,11 +4,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Room implements MapSite{
-
+public class Room implements MapSite {
     private int number;
     private Item[] item = new Item[2];
-    private  boolean target = false;
+    private boolean target = false;
 
     private Map<Maze.Directions, MapSite> sides = new HashMap<>();
 
@@ -18,12 +17,6 @@ public class Room implements MapSite{
 
     public int getNumber() {
         return number;
-    }
-
-    public static Room createRoom(int roomId) {
-        Room room = new Room(roomId);
-        room.setNumber(roomId);
-        return room;
     }
 
     public MapSite getSides(Maze.Directions dir) {
@@ -42,25 +35,16 @@ public class Room implements MapSite{
         this.sides.put(dir, ms);
     }
 
-    public void setItem(String item , Item it) {
-        if (item == "Coin"){
-        this.item[1] = it;
-        }else{
+    public void setItem(String item, Item it) {
+        if (item == "Coin") {
+            this.item[1] = it;
+        } else {
             this.item[0] = it;
         }
     }
 
     public Item getItem(int i) {
         return this.item[i];
-    }
-
-    @Override
-    public String enter(Player player) {
-        String message = "";
-        if (this.item != null) {
-            message = "THERE IS A ITEM ON THE ROOM";
-        }
-        return message;
     }
 
     public void setNumber(int number) {
@@ -72,18 +56,21 @@ public class Room implements MapSite{
     }
 
     public boolean haveCoin() {
-        if (this.item[1] != null){
-            System.out.println("yes");
-            return true;
-        }
-    return false;
-    }
-
-    public boolean haveKey() {
-        if (this.item[0] != null){
-            System.out.println("yes");
+        if (this.item[1] != null) {
             return true;
         }
         return false;
+    }
+
+    public boolean haveKey() {
+        if (this.item[0] != null) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public String enter(Player player) {
+        return "";
     }
 }

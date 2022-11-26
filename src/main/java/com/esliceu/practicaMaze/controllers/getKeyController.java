@@ -1,12 +1,10 @@
 package com.esliceu.practicaMaze.controllers;
 
-import com.esliceu.practicaMaze.model.Item;
 import com.esliceu.practicaMaze.model.Key;
 import com.esliceu.practicaMaze.model.Player;
 import com.esliceu.practicaMaze.model.Room;
 import com.esliceu.practicaMaze.services.GameService;
 import com.esliceu.practicaMaze.services.KeyService;
-import com.esliceu.practicaMaze.services.RoomService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

@@ -1,6 +1,5 @@
 package com.esliceu.practicaMaze.controllers;
 
-import com.esliceu.practicaMaze.filters.startFilter;
 import com.esliceu.practicaMaze.model.Player;
 import com.esliceu.practicaMaze.model.Room;
 import com.esliceu.practicaMaze.services.GameService;
@@ -35,7 +34,7 @@ public class NavController extends HttpServlet {
             req.setAttribute("myjson", myjson);
             if (room.isTarget()) {
                 message = " WINNER!!";
-
+                player.setWinner(true);
                 myjson = GameService.getJsonInfo(room, player, message);
 
                 req.setAttribute("myjson", myjson);

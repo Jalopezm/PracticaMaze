@@ -11,18 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/nav","/reset","/getCoin","/getKey", "/open", "/winners","/endform"})
+@WebFilter(urlPatterns = {"/winners", "/endform"})
+public class winnersFilter extends HttpFilter {
 
-public class startFilter extends HttpFilter {
-    @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpSession session = req.getSession();
         Player player = (Player) session.getAttribute("player");
-        if (player == null) {
-            res.sendRedirect("/start");
+        if (!player.isWinner()){
+            res.sendRedirect("/nav");
             return;
-        }else {
-            req.setAttribute("player", player);
         }
         chain.doFilter(req, res);
     }

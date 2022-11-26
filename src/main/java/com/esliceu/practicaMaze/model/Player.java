@@ -3,8 +3,8 @@ package com.esliceu.practicaMaze.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player  {
-    private long startTime;
+public class Player {
+    private boolean winner;
     private Room currRoom;
     private List<Item> invent = new ArrayList<>();
 
@@ -19,27 +19,22 @@ public class Player  {
     public Room getCurrRoom() {
         return currRoom;
     }
+
     public void setCurrentRoom(Room currentRoom) {
         this.currRoom = currentRoom;
         currentRoom.enter(this);
     }
-    public int playerTotalCoins(Player player){
+
+    public int playerTotalCoins(Player player) {
         int counter = 0;
         List<Item> inv = player.getItemList();
         for (int i = 0; i < inv.size(); i++) {
             String item = inv.get(i).toString();
-            if (item.equals("Coin")){
+            if (item.equals("Coin")) {
                 counter++;
             }
         }
         return counter;
-    }
-    public long getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(long startTime) {
-        this.startTime = startTime;
     }
 
     public Object playerTotalKeys(Player player) {
@@ -47,10 +42,18 @@ public class Player  {
         List<Item> inv = player.getItemList();
         for (int i = 0; i < inv.size(); i++) {
             Item item = inv.get(i);
-            if (item instanceof Key){
+            if (item instanceof Key) {
                 counter++;
             }
         }
         return counter;
+    }
+
+    public void setWinner(boolean winner) {
+        this.winner = winner;
+    }
+
+    public boolean isWinner() {
+        return winner;
     }
 }

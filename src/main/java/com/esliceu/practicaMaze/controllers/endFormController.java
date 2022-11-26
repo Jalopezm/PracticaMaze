@@ -26,14 +26,14 @@ public class endFormController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         String winnerName = req.getParameter("Winner");
-        WinnersMysql  winnersMysql = new WinnersMysql();
+        WinnersMysql winnersMysql = new WinnersMysql();
         Winner winner = new Winner();
         winner.setWinnerName(winnerName);
         String mazeName;
         int mazeID = (int) session.getAttribute("mapID");
-        if (mazeID == 1){
+        if (mazeID == 1) {
             mazeName = "Maze 1";
-        }else{
+        } else {
             mazeName = "Maze 2";
         }
         winner.setMazeName(mazeName);

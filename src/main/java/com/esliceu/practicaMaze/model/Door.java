@@ -5,8 +5,7 @@ import java.util.List;
 public class Door implements MapSite {
     private Room r1, r2;
     private boolean open = false;
-    public Door() {
-    }
+
     public Door(Room r1, Room r2) {
         this.r1 = r1;
         this.r2 = r2;
@@ -25,6 +24,7 @@ public class Door implements MapSite {
                     .forEach(k -> k.open(this));
         }
     }
+
     public boolean isOpen() {
         return this.open;
     }
@@ -34,9 +34,7 @@ public class Door implements MapSite {
         if (this.open) {
             Room r = getOtherRoom(player.getCurrRoom());
             player.setCurrentRoom(r);
-            System.out.println("Pasillo");
         } else {
-            System.out.println("Puerta");
             return "YOU CAN'T OPEN THE DOOR";
         }
         return null;
@@ -51,7 +49,7 @@ public class Door implements MapSite {
 
     @Override
     public String toString() {
-        if (isOpen()){
+        if (isOpen()) {
             return "HallWay";
         }
         return "Door";
