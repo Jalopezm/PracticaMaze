@@ -15,6 +15,7 @@ import java.util.Date;
 
 @WebServlet("/start")
 public class StartController extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher dispatcher =

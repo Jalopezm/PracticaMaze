@@ -7,6 +7,7 @@ import java.util.List;
 public class KeyService {
     int counter = 0;
     public String getKey(Key key , Player player, Room room) {
+
         List<Item> inv = player.getItemList();
         for (int i = 0; i < inv.size(); i++) {
             String item = inv.get(i).toString();
@@ -14,14 +15,13 @@ public class KeyService {
             if (item.equals("Coin")){
                 counter++;
                 inv.remove(i);
+                room.deleteItem(0);
                 break;
             }
         }
         if (counter == key.getValue()){
             counter = 0;
-            room.deleteItem(0);
             player.addItem(key);
-            return "YOU HAVE TAKEN A KEY";
         }
 
         return null;

@@ -1,5 +1,6 @@
 package com.esliceu.practicaMaze.controllers;
 
+import com.esliceu.practicaMaze.filters.startFilter;
 import com.esliceu.practicaMaze.model.Player;
 import com.esliceu.practicaMaze.model.Room;
 import com.esliceu.practicaMaze.services.GameService;
@@ -20,7 +21,6 @@ public class NavController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
             HttpSession session = req.getSession();
             player = (Player) session.getAttribute("player");
 
@@ -43,9 +43,6 @@ public class NavController extends HttpServlet {
             RequestDispatcher dispatcher =
                     req.getRequestDispatcher("/WEB-INF/jsp/nav.jsp");
             dispatcher.forward(req, resp);
-        } catch (Exception e) {
-            resp.sendRedirect("/start");
-        }
     }
 
     @Override

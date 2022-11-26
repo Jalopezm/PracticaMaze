@@ -1,12 +1,10 @@
 package com.esliceu.practicaMaze.controllers;
 
-import com.esliceu.practicaMaze.model.Coin;
 import com.esliceu.practicaMaze.model.Item;
 import com.esliceu.practicaMaze.model.Player;
 import com.esliceu.practicaMaze.model.Room;
 import com.esliceu.practicaMaze.services.CoinService;
 import com.esliceu.practicaMaze.services.GameService;
-import com.esliceu.practicaMaze.services.KeyService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -36,6 +34,8 @@ public class getCoinController extends HttpServlet {
             RequestDispatcher dispatcher =
                     req.getRequestDispatcher("/WEB-INF/jsp/nav.jsp");
             dispatcher.forward(req, resp);
+        }else{
+            resp.sendRedirect("/nav");
         }
     }
 }

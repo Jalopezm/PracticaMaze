@@ -69,13 +69,16 @@ canvas.addEventListener('click', event => {
             requestAnimationFrame(moveW);
         }
         if (x >= 945 && y >= 298 && x <= 1000 && y <= 351) {
-            console.log("Coin")
-            window.location.assign("/getCoin");
+            if (data.items.Coin != "[null]") {
+                console.log("Coin")
+                window.location.assign("/getCoin");
+            }
         }
         if (x >= 670 && y >= 299 && x <= 730 && y <= 351) {
-            console.log("Key")
-            window.location.assign("/getKey");
-
+            if (data.items.Key != "[null]") {
+                console.log("Key")
+                window.location.assign("/getKey");
+            }
         }
     }
 });
@@ -271,7 +274,7 @@ function idle(timestamp) {
         draw(images);
         ctx.drawImage(pj, numeroIdle * 39, 0 * 62, 39, 62,
             810, 200, 39 * 1.2, 62 * 1.2);
-        if (count % 25 == 0) {
+        if (count % 30 == 0) {
             numeroIdle += 2;
             if (numeroIdle > 2) {
                 numeroIdle = 0;
