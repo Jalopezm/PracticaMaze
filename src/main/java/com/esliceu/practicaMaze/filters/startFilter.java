@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/nav","/reset","/getCoin","/getKey", "/open", "/winners","/endform"})
+@WebFilter(urlPatterns = {"/nav","/reset","/getCoin","/getKey", "/open","/endform"})
 
 public class startFilter extends HttpFilter {
     @Override

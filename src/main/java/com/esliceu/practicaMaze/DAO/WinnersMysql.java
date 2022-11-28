@@ -38,7 +38,7 @@ public class WinnersMysql implements WinnersDAOMysql {
             List<Winner> allWinners = new ArrayList<>();
             Connection con = getConnection();
             Statement st = con.createStatement();
-            ResultSet resultSet = st.executeQuery("SELECT * FROM `winners` ORDER BY TIME");
+            ResultSet resultSet = st.executeQuery("SELECT * FROM `winners` ORDER BY TIME LIMIT 5");
             while (resultSet.next()) {
                 int id = resultSet.getInt(1);
                 String playerName = resultSet.getString(2);

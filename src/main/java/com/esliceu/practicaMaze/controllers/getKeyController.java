@@ -22,28 +22,13 @@ public class getKeyController extends HttpServlet {
         HttpSession session = req.getSession();
         Player player = (Player) session.getAttribute("player");
         KeyService keyService = new KeyService();
-        Room room = player.getCurrRoom();
-        boolean haveKey = room.haveKey();
 
-        if (haveKey) {
-            Key key = (Key) room.getItem(0);
-            if (player.playerTotalCoins(player) >= key.getValue()) {
-                for (int i = 0; i < key.getValue(); i++) {
-                  String message = keyService.getKey(key, player, room);
-                    String myjson = GameService.getJsonInfo(room, player, message);
+        String myjson = keyService.getKey(player);
 
-                    req.setAttribute("myjson", myjson);
-                }
+        req.setAttribute("myjson", myjson);
 
-            }else{
-                String message = "NOT ENOUGH COINS";
-                String myjson = GameService.getJsonInfo(room, player, message);
-
-                req.setAttribute("myjson", myjson);
-            }
-            RequestDispatcher dispatcher =
-                    req.getRequestDispatcher("/WEB-INF/jsp/nav.jsp");
-            dispatcher.forward(req, resp);
-        }
+        RequestDispatcher dispatcher =
+                req.getRequestDispatcher("/WEB-INF/jsp/nav.jsp");
+        dispatcher.forward(req, resp);
     }
 }

@@ -4,6 +4,7 @@ import com.esliceu.practicaMaze.model.Player;
 import com.esliceu.practicaMaze.model.Room;
 import com.esliceu.practicaMaze.services.GameService;
 import com.esliceu.practicaMaze.services.RoomService;
+import com.esliceu.practicaMaze.services.UnknownDirException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,28 +21,28 @@ public class NavController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-            HttpSession session = req.getSession();
-            player = (Player) session.getAttribute("player");
+        HttpSession session = req.getSession();
+        player = (Player) session.getAttribute("player");
 
-            String dir = req.getParameter("dir");
-            RoomService roomService = new RoomService();
-            String message = roomService.movePlayer(dir, player);
-            Room room = player.getCurrRoom();
-
-
-            String myjson = GameService.getJsonInfo(room, player, message);
+        String dir = req.getParameter("dir");
+        RoomService roomService = new RoomService();
+        try {
+            String myjson = roomService.movePlayer(dir, player);
 
             req.setAttribute("myjson", myjson);
-            if (room.isTarget()) {
-                message = " WINNER!!";
-                player.setWinner(true);
-                myjson = GameService.getJsonInfo(room, player, message);
 
-                req.setAttribute("myjson", myjson);
-            }
             RequestDispatcher dispatcher =
                     req.getRequestDispatcher("/WEB-INF/jsp/nav.jsp");
             dispatcher.forward(req, resp);
+
+
+        }catch (UnknownDirException e){
+            String error= "UNKNOWMN INPUT DIRECTION";
+            req.setAttribute("error",error);
+            RequestDispatcher dispatcher =
+                    req.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
+            dispatcher.forward(req, resp);
+        }
     }
 
     @Override

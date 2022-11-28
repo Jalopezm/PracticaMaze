@@ -7,9 +7,7 @@
     </style>
 </head>
 <body>
-<form method="post" action="/endform">
-<input type="text" name="Winner">
-<input type="submit" value="SEND">
-</form>
+<h1>ERROR DETECTED</h1>
+<h2>${error}</h2>
 </body>
 </html>

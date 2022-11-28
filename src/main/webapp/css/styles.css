@@ -1,14 +1,107 @@
-*{
-margin:0;
-padding:0;
+* {
+  margin: 0;
+  padding: 0;
 }
 body {
   max-width: 100%;
   max-height: 100vh;
+  background-image: url("/img/dungeon.jpg");
 }
-#canvas{
-margin-top:5%;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+#canvas {
+  margin-top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+#start {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+}
+#start h1 {
+  color: white;
+  text-align: center;
+}
+#start form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-left: -105px;
+}
+#start input[type="submit"] {
+  margin-top: 10%;
+  padding-right: 30%;
+  padding-left: 30%;
+  font-size: 20px;
+  margin-left: 15px;
+}
+#reset {
+  margin-top: 5%;
+  font-size: 20px;
+  padding-right: 5%;
+  padding-left: 5%;
+}
+#reset-div {
+  display: flex;
+  justify-content: center;
+}
+select {
+  padding: 5px;
+  padding-right: 35%;
+  padding-left: 35%;
+  font-size: 20px;
+}
+
+.datagrid{
+    margin-left:1%;
+    margin-right:1%;
+    margin-top:15%;
+}
+.datagrid table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.datagrid {
+  font: normal 12px/150% Arial, Helvetica, sans-serif;
+  background: none;
+  overflow: hidden;
+  border: 1px solid #991821;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.datagrid table td,
+.datagrid table th {
+  padding: 3px 10px;
+}
+.datagrid table thead th {
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0.05, #991821),
+    color-stop(1, #80141c)
+  );
+  background: -moz-linear-gradient(center top, #991821 5%, #80141c 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#991821', endColorstr='#80141C');
+  background-color: #991821;
+  color: #ffffff;
+  font-size: 30px;
+  font-weight: bold;
+  border-left: 1px solid #b01c26;
+}
+.datagrid table thead th:first-child {
+  border: none;
+}
+.datagrid table tbody td {
+  color: #fff;
+  border-left: 1px solid #f7cdcd;
+  font-size: 20px;
+  font-weight: normal;
+}
+.datagrid table tbody td:first-child {
+  border-left: none;
+}
+.datagrid table tbody tr:last-child td {
+  border-bottom: none;
 }

@@ -4,16 +4,14 @@
 
 <head>
     <style>
-       <%--
-       <%@include file="/WEB-INF/css/style.css" %>
-       --%>
+        <%@include file="/css/styles.css" %>
     </style>
 </head>
 
-<body>
-    <div>
-        <form method="post" action="/start">
-            <h1>Start</h1>
+<body id= "start-body">
+    <div id="start">
+        <h1>SELECT YOUR MAP</h1>
+        <form method="post" action="/start" >
             <select name="map">
                 <option value="1">Map 1</option>
                 <option value="2">Map 2</option>
