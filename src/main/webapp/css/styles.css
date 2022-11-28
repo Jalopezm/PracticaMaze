@@ -105,3 +105,8 @@ select {
 .datagrid table tbody tr:last-child td {
   border-bottom: none;
 }
+#error-body{
+background-color:red;
+}
+#error,#error-message{
+color:white;}

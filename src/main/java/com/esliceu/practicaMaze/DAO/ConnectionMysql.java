@@ -10,7 +10,7 @@ public class ConnectionMysql {
         if (connection != null) return connection;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://mysql:3306/MazeDB", "root", "root");
+            connection = DriverManager.getConnection("jdbc:mysql://mysql:3307/MazeDB", "root", "root");
             return connection;
         } catch (Exception e) {
             throw new RuntimeException(e);

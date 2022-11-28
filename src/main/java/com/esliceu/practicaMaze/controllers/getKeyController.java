@@ -1,9 +1,7 @@
 package com.esliceu.practicaMaze.controllers;
 
-import com.esliceu.practicaMaze.model.Key;
+import com.esliceu.practicaMaze.excepcions.GetKeyException;
 import com.esliceu.practicaMaze.model.Player;
-import com.esliceu.practicaMaze.model.Room;
-import com.esliceu.practicaMaze.services.GameService;
 import com.esliceu.practicaMaze.services.KeyService;
 
 import javax.servlet.RequestDispatcher;
@@ -22,13 +20,20 @@ public class getKeyController extends HttpServlet {
         HttpSession session = req.getSession();
         Player player = (Player) session.getAttribute("player");
         KeyService keyService = new KeyService();
+        try {
+            String myjson = keyService.getKey(player);
 
-        String myjson = keyService.getKey(player);
+            req.setAttribute("myjson", myjson);
 
-        req.setAttribute("myjson", myjson);
-
-        RequestDispatcher dispatcher =
-                req.getRequestDispatcher("/WEB-INF/jsp/nav.jsp");
-        dispatcher.forward(req, resp);
+            RequestDispatcher dispatcher =
+                    req.getRequestDispatcher("/WEB-INF/jsp/nav.jsp");
+            dispatcher.forward(req, resp);
+        } catch (GetKeyException e) {
+            String error = "GET KEY ERROR";
+            req.setAttribute("error", error);
+            RequestDispatcher dispatcher =
+                    req.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
+            dispatcher.forward(req, resp);
+        }
     }
 }

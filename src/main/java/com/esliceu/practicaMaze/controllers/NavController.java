@@ -1,10 +1,8 @@
 package com.esliceu.practicaMaze.controllers;
 
 import com.esliceu.practicaMaze.model.Player;
-import com.esliceu.practicaMaze.model.Room;
-import com.esliceu.practicaMaze.services.GameService;
 import com.esliceu.practicaMaze.services.RoomService;
-import com.esliceu.practicaMaze.services.UnknownDirException;
+import com.esliceu.practicaMaze.excepcions.UnknownDirException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

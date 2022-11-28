@@ -1,5 +1,6 @@
 package com.esliceu.practicaMaze.services;
 
+import com.esliceu.practicaMaze.excepcions.GetKeyException;
 import com.esliceu.practicaMaze.model.*;
 
 import java.util.List;
@@ -36,6 +37,8 @@ public class KeyService {
                 }
                 return myjson = GameService.getJsonInfo(room, player, message);
             }
+        } else {
+            throw new GetKeyException();
         }
         return myjson;
     }
