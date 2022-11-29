@@ -36,6 +36,7 @@ public class NavController extends HttpServlet {
 
         }catch (UnknownDirException e){
             String error= "UNKNOWMN INPUT DIRECTION";
+            resp.setStatus(401);
             req.setAttribute("error",error);
             RequestDispatcher dispatcher =
                     req.getRequestDispatcher("/WEB-INF/jsp/error.jsp");

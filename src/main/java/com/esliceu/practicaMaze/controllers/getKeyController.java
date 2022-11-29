@@ -30,6 +30,7 @@ public class getKeyController extends HttpServlet {
             dispatcher.forward(req, resp);
         } catch (GetKeyException e) {
             String error = "GET KEY ERROR";
+            resp.setStatus(401);
             req.setAttribute("error", error);
             RequestDispatcher dispatcher =
                     req.getRequestDispatcher("/WEB-INF/jsp/error.jsp");

@@ -15,10 +15,9 @@ public class RoomService {
 
     public String movePlayer(String move, Player player) {
         GameUtil gameUtil = new GameUtil();
-        EnumSet enumSet = EnumSet.of(Maze.Directions.North, Maze.Directions.South, Maze.Directions.West, Maze.Directions.East);
         String message = "";
         if (move != null) {
-            if (enumSet.contains(Maze.Directions.valueOf(move))) {
+            if (Maze.getDirection(move)) {
                 switch (Maze.Directions.valueOf(move)) {
                     case North:
                         message = gameUtil.go(player, Maze.Directions.North);

@@ -31,6 +31,7 @@ public class getCoinController extends HttpServlet {
             dispatcher.forward(req, resp);
         }catch (GetCoinException e) {
             String error = "GET COIN ERROR";
+            resp.setStatus(401);
             req.setAttribute("error", error);
             RequestDispatcher dispatcher =
                     req.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
