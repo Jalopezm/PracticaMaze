@@ -21,7 +21,7 @@
             <tr>
                 <td>${winner.getWinnerName()}</td>
                 <td>${winner.getMazeSolved()}</td>
-                <td>${winner.getTime()}</td>
+                <td>${winner.getTimeFormatted()}</td>
             </tr>
     </c:forEach>
     </tbody>

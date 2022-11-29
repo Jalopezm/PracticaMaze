@@ -43,6 +43,7 @@ public class endFormController extends HttpServlet {
         long time = (timeFinish - timeStart);
         winner.setTime(time);
         winnersMysql.insertWinner(winner);
+        session.invalidate();
 
         resp.sendRedirect("/winners");
     }

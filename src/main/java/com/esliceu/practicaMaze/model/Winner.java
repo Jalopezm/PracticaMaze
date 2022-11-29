@@ -33,4 +33,14 @@ public class Winner {
     public void setTime(long time) {
         this.time = time;
     }
+    public String getTimeFormatted() {
+        int minutes = (int)Math.floor(time/60000);
+        int seconds = (int)Math.floor((time/1000) - (minutes*60));
+        String minutesStr = "" + minutes;
+        String secondsStr = "" + seconds;
+        if(minutes < 10) minutesStr = "0" + minutes;
+        if(seconds < 10) secondsStr = "0" + seconds;
+
+        return minutesStr + "'" + secondsStr + '"';
+    }
 }
