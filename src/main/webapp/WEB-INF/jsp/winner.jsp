@@ -7,6 +7,7 @@
     </style>
 </head>
 <body>
+<h1>HALL OF FAME</h1>
 <div class="datagrid";>
         <table>
             <thead>

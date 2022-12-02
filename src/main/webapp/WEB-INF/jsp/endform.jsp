@@ -7,9 +7,12 @@
     </style>
 </head>
 <body>
+<h1>INTRODUCE YOUR NAME</h1>
+<div id="endForm">
 <form method="post" action="/endform">
 <input type="text" name="Winner">
 <input type="submit" value="SEND">
 </form>
+</div>
 </body>
 </html>
